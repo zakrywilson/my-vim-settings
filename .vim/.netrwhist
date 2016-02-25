@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/zakrywilson/Google Drive/School/C++/Projects/8'
+let g:netrw_dirhist_2='/Users/zakrywilson/.vim'
+let g:netrw_dirhist_3='/Users/zakrywilson/Documents/Programming/projects/jekyll/zakrywilson.github.io/images'
+let g:netrw_dirhist_4='/Users/zakrywilson/Documents/Programming/projects/c++/threading'
+let g:netrw_dirhist_5='/Users/zakrywilson/Documents/Programming/projects/c++/mergesort'
+let g:netrw_dirhist_6='/Users/zakrywilson/summread'
+let g:netrw_dirhist_7='/Users/zakrywilson/Documents/Programming/projects/thought-logger-python'

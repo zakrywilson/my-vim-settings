@@ -34,6 +34,9 @@ set colorcolumn=+1  "Add offset
 highlight colorcolumn ctermbg=gray guibg=gray
 set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h20
 
+" Turning off syntax errors (which are wrong with Java 8)
+hi Error None
+
 " Spell checking "
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.txt setlocal spell
@@ -49,8 +52,9 @@ let g:airline_exclude_preview=1
 nnoremap <esc><esc> :noh<return>
 
 " Color scheme "
+colorscheme lucius
 set background=dark
-colorscheme hybrid_material
+"hybrid_material
 
 "Enable Pathogen "
 execute pathogen#infect()

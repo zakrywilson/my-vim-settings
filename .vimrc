@@ -51,10 +51,11 @@ let java_ignore_javadoc=1
 " Syntax Checking Off "
 hi Error None
 
-" Highlight "
-set hlsearch
-nnoremap <esc><esc> :noh<return>
-
 " Color Scheme "
 colorscheme monokai
 set background=dark
+
+" Highlight "
+set hlsearch
+hi search cterm=NONE ctermfg=black ctermbg=yellow
+nnoremap <esc><esc> :noh<return>

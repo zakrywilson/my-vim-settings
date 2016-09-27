@@ -1,65 +1,61 @@
-" VIM customization "
+" My VIM Settings "
 
-" General stuff "
+" General "
 set t_Co=256
 filetype plugin indent on
-syntax on "Turns on syntax
-set number "Sets line numbers
+syntax on
 
-" Tab to 2 spaces "
-set numberwidth=2
-set tabstop=2 
-set shiftwidth=2
+" Tabs "
+set tabstop=4
+set shiftwidth=4
 set expandtab
 retab
 
 " Misc "
-set wildmode=list:full
-set wildmenu        "Improved menu
-set splitbelow
-set cursorline      "Highlights the line you're on
-set hlsearch        "Highlights the things you search
-set showmatch       "Shows when {}, [], or () are matching
-set titlestring=%t  "Only showing the current file for title
-set history=1000    "Remember more commands
-set undolevels=1000 "Remember more undo's
-set visualbell      "No beeping
-set noerrorbells    "No beeping
-set nobackup        "No backup files
-set noswapfile      "None of those stupid .swp files
-set textwidth=80    "text wrap is now at 80
-set laststatus=2    "So air-vim shows up
-set colorcolumn=80  "Add the line column
-set colorcolumn=+1  "Add offset
-highlight colorcolumn ctermbg=gray guibg=gray
-set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h20
+set numberwidth=4      "Allow for 4-character line number buffer
+set number             "Line numbers
+set wildmenu           "Better menu
+set cursorline         "Horizontal cursor line
+set showmatch          "Show {}, [], () matches
+set titlestring=%t     "Set file name as title
+set history=1000       "Increase history
+set undolevels=1000    "Remember 1,000 undo's
+set visualbell         "No beeping
+set noerrorbells       "No beeping
+set noswapfile         "No swap files
+set nobackup           "No backup file
 
-" Turning off syntax errors (which are wrong with Java 8)
+" Column "
+"set textwidth=80       "Line column at 80 chars
+"set colorcolumn=+1     "Add +1 offset
+"highlight colorcolumn ctermbg=gray guibg=gray
+
+" Disable spell check in Javadoc comments "
+au BufRead,BufNewFile package.html source disable_javadoc_spellcheck.vim
+
+" Highlight characters that reside on the 81st character border "
+augroup collumnLimit
+  autocmd!
+  autocmd BufEnter,WinEnter,FileType scala,java
+        \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
+  let collumnLimit = 81
+  let pattern =
+        \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+  autocmd BufEnter,WinEnter,FileType scala,java
+        \ let w:m1=matchadd('CollumnLimit', pattern, -1)
+augroup END
+
+" Disable highlighting first comment in Javadoc "
+let java_ignore_javadoc=1
+
+" Syntax Checking Off "
 hi Error None
 
-" Spell checking "
-autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd BufRead,BufNewFile *.txt setlocal spell
-
-" vim-airline "
-set ttimeoutlen=50
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'tomorrow'
-let g:airline_exclude_preview=1
-
-" Clear highlight search "
-nnoremap <esc><esc> :noh<return>
-
-" Color scheme "
-colorscheme lucius
+" Color Scheme "
+colorscheme monokai
 set background=dark
-"hybrid_material
 
-"Enable Pathogen "
-execute pathogen#infect()
-
-" Hardmode "
-" Enable VIM: hardmode
-" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-" nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+" Highlight "
+set hlsearch
+hi search cterm=NONE ctermfg=black ctermbg=yellow
+nnoremap <esc><esc> :noh<return>
